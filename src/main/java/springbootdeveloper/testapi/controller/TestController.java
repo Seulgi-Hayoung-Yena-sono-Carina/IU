@@ -1,7 +1,6 @@
 package springbootdeveloper.testapi.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springbootdeveloper.testapi.service.TestService;
@@ -17,7 +16,6 @@ public class TestController {
 
     @GetMapping("/test")
     public List<Member> getAllMembers(){
-        List<Member> members=testservice.getAllMembers();
-        return members;
+        return testservice.getAllMembers();
     }
 }

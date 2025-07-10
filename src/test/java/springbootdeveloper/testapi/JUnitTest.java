@@ -1,8 +1,10 @@
 package springbootdeveloper.testapi;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class JUnitTest {
@@ -14,7 +16,7 @@ public class JUnitTest {
         int sum=3;
 
 
-        Assertions.assertEquals(sum,a+b);
+        assertThat(a+b).isEqualTo(sum); //Assertion 쓰고 assertThat 하는 습관 들이기
 
     }
 

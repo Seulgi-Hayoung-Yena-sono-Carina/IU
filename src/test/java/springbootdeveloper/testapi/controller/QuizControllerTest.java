@@ -60,4 +60,5 @@ class QuizControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().string("Bad Request"));
     }
+
 }
