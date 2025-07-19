@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -40,13 +41,8 @@ public class Article {
         this.content=content;
     }
 
-    public void update(String title,String content){
-        this.title=title;
-        this.content=content;
-    }
-
-    public void patch(String title,String content){
-        if(title!=null) this.title=title;
-        if(content!=null)this.content=content;
+    public void update(Optional<String> title, Optional<String> content){
+        title.ifPresent(t->this.title=t);
+        content.ifPresent(c->this.content=c);
     }
 }

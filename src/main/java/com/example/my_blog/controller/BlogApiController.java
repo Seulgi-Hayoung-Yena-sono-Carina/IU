@@ -2,7 +2,6 @@ package com.example.my_blog.controller;
 
 import com.example.my_blog.domain.Article;
 import com.example.my_blog.dto.request.AddArticleRequest;
-import com.example.my_blog.dto.request.PatchRequest;
 import com.example.my_blog.dto.request.UpdateArticleRequest;
 import com.example.my_blog.dto.response.ArticleResponse;
 import com.example.my_blog.service.BlogService;
@@ -56,8 +55,8 @@ public class BlogApiController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ArticleResponse> patchArticle(@PathVariable("id")Long id,@RequestBody PatchRequest request){
-        Article updatedArticle=blogService.patch(id,request);
+    public ResponseEntity<ArticleResponse> patchArticle(@PathVariable("id")Long id,@RequestBody UpdateArticleRequest request){
+        Article updatedArticle=blogService.update(id,request);
         return ResponseEntity.ok().body(new ArticleResponse(updatedArticle));
     }
 
