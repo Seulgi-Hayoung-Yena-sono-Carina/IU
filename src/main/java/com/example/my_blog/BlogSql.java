@@ -12,9 +12,9 @@ public class BlogSql {
 
     @PostConstruct
     public void control(){
-        jdbcTemplate.execute("INSERT INTO article (title, content) VALUES ('제목 1','내용 1')");
-        jdbcTemplate.execute("INSERT INTO article (title, content) VALUES ('제목 2','내용 2')");
-        jdbcTemplate.execute("INSERT INTO article (title, content) VALUES ('제목 3','내용 3')");
+        jdbcTemplate.execute("INSERT INTO article (title, content,created_at,updated_at) VALUES ('제목 1','내용 1',NOW(),NOW())");
+        jdbcTemplate.execute("INSERT INTO article (title, content,created_at,updated_at) VALUES ('제목 2','내용 2',NOW(),NOW())");
+        jdbcTemplate.execute("INSERT INTO article (title, content,created_at,updated_at) VALUES ('제목 3','내용 3',NOW(),NOW())");
     }
 
 }

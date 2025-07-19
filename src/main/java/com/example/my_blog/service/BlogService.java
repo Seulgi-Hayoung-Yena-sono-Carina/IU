@@ -2,6 +2,7 @@ package com.example.my_blog.service;
 
 import com.example.my_blog.domain.Article;
 import com.example.my_blog.dto.request.AddArticleRequest;
+import com.example.my_blog.dto.request.PatchRequest;
 import com.example.my_blog.dto.request.UpdateArticleRequest;
 import com.example.my_blog.repository.BlogRepository;
 import jakarta.transaction.Transactional;
@@ -17,23 +18,38 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 public class BlogService {
     private final BlogRepository blogRepository;
 
-    public Article save(AddArticleRequest request){ return blogRepository.save(request.toEntity());}
-
-   public List<Article> findAll(){return blogRepository.findAll();}
-
-    public Article findById(Long id){
-        return blogRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("not found: "+id));
+    public Article save(AddArticleRequest request) {
+        return blogRepository.save(request.toEntity());
     }
 
-    public void delete(Long id){blogRepository.deleteById(id);}
+    public List<Article> findAll() {
+        return blogRepository.findAll();
+    }
+
+    public Article findById(Long id) {
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    }
+
+    public void delete(Long id) {
+        blogRepository.deleteById(id);
+    }
 
     @Transactional
-    public Article update(Long id, UpdateArticleRequest request){
-        Article article=blogRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("not found: " + id));
-        article.update(request.getTitle(),request.getContent());
+    public Article update(Long id, UpdateArticleRequest request) {
+        Article article = blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+
+        article.update(request.getTitle(), request.getContent());
         return article;
     }
 
+    @Transactional
+    public Article patch(Long id, PatchRequest request){
+        Article article=blogRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("not found: " + id));
+
+        article.patch(request.getTitle(),request.getContent());
+        return article;
+    }
 }
